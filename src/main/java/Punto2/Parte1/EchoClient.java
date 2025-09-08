@@ -1,3 +1,5 @@
+package Punto2.Parte1;
+
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;

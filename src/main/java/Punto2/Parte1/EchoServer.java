@@ -1,3 +1,7 @@
+package Punto2.Parte1;
+
+import Punto1.ConversionSN;
+
 import java.net.*;
 import java.io.*;
 

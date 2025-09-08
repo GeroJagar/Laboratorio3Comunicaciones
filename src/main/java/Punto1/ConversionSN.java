@@ -1,3 +1,5 @@
+package Punto1;
+
 public class ConversionSN {
 
     //1) Convertir un número entero decimal a binario, especificando la longitud en bits.
