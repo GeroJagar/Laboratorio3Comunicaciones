@@ -25,12 +25,12 @@ public class EchoServer {
     }
 
     private static String tratarMensaje(String mensaje) {
-        ConversionSN converter = new ConversionSN();
-        String[] partes = mensaje.split(";");
-        String resultado = "";
-        switch(partes[0]) {
+        ConversionSN converter = new ConversionSN(); //Necesario para realizar la conversion de unidades.
+        String[] partes = mensaje.split(";"); //Se necesita el Split para poder hacer la conversion.
+        String resultado = ""; //Variable a retornar.
+        switch(partes[0]) {//Con el indice 0 del split, nos indica cual conversion debe hacer.
             case "1":
-                resultado = converter.decimalABinario(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]));
+                resultado = converter.decimalABinario(Integer.parseInt(partes[1]), Integer.parseInt(partes[2])); //El indice 1 nos indica que número se debe convertir. Mientras que con el indice 2, nos indica el número de bits para la conversion, si es que lo necesita.
                 break;
             case "2":
                 resultado = ""+converter.binarioADecimal(partes[1]);
