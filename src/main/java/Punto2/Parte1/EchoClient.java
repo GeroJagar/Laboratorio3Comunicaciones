@@ -51,17 +51,41 @@ public class EchoClient {
         }
     }
 
+    /**
+     * Método que envía un mensaje al servidor y espera la respuesta.
+     *
+     * Flujo de comunicación:
+     * 1. Se crea un socket para conectarse al servidor en el puerto 5000 (localhost).
+     * 2. Se obtiene un flujo de salida (OutputStream) para enviar el mensaje al servidor.
+     * 3. Se obtiene un flujo de entrada (InputStream) para recibir la respuesta del servidor.
+     * 4. Se envía el mensaje usando println() (termina con \n, necesario para readLine()).
+     * 5. Se espera la respuesta del servidor con readLine().
+     * 6. Se cierra la conexión.
+     *
+     * @param mensaje El mensaje a enviar al servidor.
+     * @return La respuesta enviada por el servidor.
+     */
     public static String enviarMensajeAlServidor(String mensaje) {
         try {
+            // 1. Crear socket y conectar al servidor en localhost:5000
             Socket socket = new Socket("localhost", 5000);
 
+            // 2. Preparar flujo de salida para enviar mensajes al servidor
             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
+
+            // 3. Preparar flujo de entrada para leer respuesta del servidor
             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            salida.println(mensaje); // envía mensaje
-            String respuesta = entrada.readLine(); // recibe respuesta
+            // 4. Enviar el mensaje al servidor
+            salida.println(mensaje);
 
+            // 5. Esperar y leer la respuesta del servidor
+            String respuesta = entrada.readLine();
+
+            // 6. Cerrar conexión
             socket.close();
+
+            // Mostrar y retornar la respuesta recibida
             System.out.println(respuesta);
             return respuesta;
         } catch (Exception e) {
@@ -69,4 +93,5 @@ public class EchoClient {
             return null;
         }
     }
+
 }

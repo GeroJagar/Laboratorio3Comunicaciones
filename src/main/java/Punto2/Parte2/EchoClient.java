@@ -43,10 +43,12 @@ public class EchoClient {
                     int numBits = input.nextInt();
                     input.nextLine();
                     mensaje = mensaje+numBits;
+                }else{
+                    mensaje = mensaje+" ";
                 }
                 System.out.println(mensaje);
 
-                enviarMensajeAlServidor(mensaje);
+                enviarMensajeAlServidor(mensaje+"\n");
             }
 
         }

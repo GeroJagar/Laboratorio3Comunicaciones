@@ -8,19 +8,29 @@ import java.io.*;
 public class EchoServer {
     public static void main(String[] args) {
         try {
-            ServerSocket server = new ServerSocket(5000); // puerto
-            Socket socket = server.accept(); // espera conexión
+            // 1. Crear un ServerSocket que escucha conexiones en el puerto 5000
+            ServerSocket server = new ServerSocket(5000);
 
+            // 2. Esperar a que un cliente se conecte (bloqueante)
+            Socket socket = server.accept();
+
+            // 3. Preparar flujo de entrada para leer datos enviados por el cliente
             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            // 4. Preparar flujo de salida para enviar respuesta al cliente
             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
 
-            String mensaje = entrada.readLine(); // lee mensaje del cliente
-            salida.println(tratarMensaje(mensaje)); // lo reenvía
+            // 5. Leer mensaje enviado por el cliente (termina en \n porque se usó println en el cliente)
+            String mensaje = entrada.readLine();
 
+            // 6. Procesar mensaje con la lógica de conversión y enviar resultado al cliente
+            salida.println(tratarMensaje(mensaje)+"\n");
+
+            // 7. Cerrar la conexión con el cliente y el servidor
             socket.close();
             server.close();
         } catch (Exception e) {
-            // normalmente se maneja, pero aquí lo dejamos vacío para simplificación
+            // En una app real deberías manejar la excepción (logs, retry, etc.)
         }
     }
 

@@ -18,7 +18,7 @@ public class EchoServer {
             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
 
             String mensaje = entrada.readLine(); // lee mensaje del cliente
-            salida.println(tratarMensaje(mensaje)); // lo reenvía
+            salida.println(tratarMensaje(mensaje)+"\n"); // lo reenvía
 
             socket.close();
             server.close();
