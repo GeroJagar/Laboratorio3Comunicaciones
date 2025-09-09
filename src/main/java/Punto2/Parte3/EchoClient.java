@@ -26,11 +26,11 @@ public class EchoClient {
             String mensaje = "";
             System.out.println(menu);
             int  opcion = input.nextInt();
+            input.nextLine();
             if (opcion == 7){
                 break;
             }else{
-                input.nextLine();
-                mensaje = mensaje+opcion+" ";
+                mensaje = mensaje+convertirOpcion(opcion)+" ";
                 System.out.println(numeroEleccion);
                 String num = input.nextLine();
                 mensaje = mensaje+num+" ";
@@ -42,10 +42,28 @@ public class EchoClient {
                 }
                 System.out.println(mensaje);
 
-                enviarMensajeAlServidor(mensaje);
+                enviarMensajeAlServidor(mensaje+"\n");
             }
 
         }
+    }
+
+    public static String convertirOpcion(int opcion){
+        switch(opcion){
+            case 1:
+                return "DEC_BIN";
+            case 2:
+                return "BIN_DEC";
+            case 3:
+                return "DEC_HEX";
+            case 4:
+                return "HEX_DEC";
+            case 5:
+                return "BIN_HEX";
+            case 6:
+                return "HEX_BIN";
+        }
+        return "";
     }
 
     public static String enviarMensajeAlServidor(String mensaje) {

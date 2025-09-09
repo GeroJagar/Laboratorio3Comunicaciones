@@ -18,7 +18,7 @@ public class EchoServer {
             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
 
             String mensaje = entrada.readLine(); // lee mensaje del cliente
-            salida.println(tratarMensaje(mensaje)); // lo reenvía
+            salida.println(tratarMensaje(mensaje)+"\n"); // lo reenvía
 
             socket.close();
             server.close();
@@ -32,22 +32,22 @@ public class EchoServer {
         String[] partes = mensaje.split(" ");
         String resultado = "";
         switch(partes[0]) {
-            case "1":
+            case "DEC_BIN":
                 resultado = converter.decimalABinario(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]));
                 break;
-            case "2":
+            case "BIN_DEC":
                 resultado = ""+converter.binarioADecimal(partes[1]);
                 break;
-            case "3":
+            case "DEC_HEX":
                 resultado = converter.decimalAHexadecimal(Integer.parseInt(partes[1]),Integer.parseInt(partes[2]));
                 break;
-            case "4":
+            case "HEX_DEC":
                 resultado = ""+converter.hexadecimalADecimal(partes[1]);
                 break;
-            case "5":
+            case "BIN_HEX":
                 resultado = converter.binarioAHexadecimal(partes[1],Integer.parseInt(partes[2]));
                 break;
-            case "6":
+            case "HEX_BIN":
                 resultado = converter.hexadecimalABinario(partes[1]);
                 break;
         }
