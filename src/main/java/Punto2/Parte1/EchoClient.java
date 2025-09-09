@@ -20,24 +20,34 @@ public class EchoClient {
 
     public static void main(String[] args) {
         while (true){
-            Scanner input = new Scanner(System.in);
-            String mensaje = "";
-            System.out.println(menu);
-            int  opcion = input.nextInt();
-            input.nextLine();
-            mensaje = mensaje+opcion+";";
-            System.out.println(numeroEleccion);
-            String num = input.nextLine();
-            mensaje = mensaje+num+";";
-            if (opcion == 1 || opcion == 3 || opcion == 5 ){
-                System.out.println(numeroBits);
-                int numBits = input.nextInt();
-                input.nextLine();
-                mensaje = mensaje+numBits;
-            }
-            System.out.println(mensaje);
+            Scanner input = new Scanner(System.in);//Necesario para escanear en consola.
+            String mensaje = ""; //Necesario para concatenar el mensaje final al servidor.
 
-            enviarMensajeAlServidor(mensaje);
+            System.out.println(menu);//Aquí se muestra la variable final que es el menú para el usuario.
+            int  opcion = input.nextInt(); //Aquí lee la opción que el usuario elige.
+
+            if (opcion==7){
+                break;
+            }else{
+                input.nextLine();//Necesario para consumir el salto de linea sobrante.
+                mensaje = mensaje+opcion+";"; //Concatena la opción con el mensaje final.
+
+                System.out.println(numeroEleccion);//Le pregunta al usuario que número quiere convertir.
+                String num = input.nextLine();//Lee el número digitado por el usuario.
+                mensaje = mensaje+num+";";//Concatena el mensaje con el número.
+
+                if (opcion == 1 || opcion == 3 || opcion == 5 ){ //Este if necesario ya que estas opciones, es necesario indicar la cantidad de bits.
+                    System.out.println(numeroBits);//Le pregunta al usuario cuantos bits desea.
+                    int numBits = input.nextInt();//Lee el número de bits.
+                    input.nextLine();
+                    mensaje = mensaje+numBits;//Concatena el número de bits con el mensaje.
+                }else{
+                    mensaje = mensaje+" ";
+                }
+                System.out.println(mensaje);//Con esto se muestra en consola el mensaje terminado
+
+                enviarMensajeAlServidor(mensaje+"\n");//Aquí se envia al servidor para que sea tratado el mensaje, se agrega \n ya que lo pide el RFC.
+            }
         }
     }
 

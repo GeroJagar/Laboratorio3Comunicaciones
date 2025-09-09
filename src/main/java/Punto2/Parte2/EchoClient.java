@@ -24,16 +24,20 @@ public class EchoClient {
         while (true){
             Scanner input = new Scanner(System.in);
             String mensaje = "";
+
             System.out.println(menu);
             int  opcion = input.nextInt();
+
             if (opcion == 7){
                 break;
             }else{
                 input.nextLine();
                 mensaje = mensaje+opcion+" ";
+
                 System.out.println(numeroEleccion);
                 String num = input.nextLine();
                 mensaje = mensaje+num+" ";
+
                 if (opcion == 1 || opcion == 3 || opcion == 5 ){
                     System.out.println(numeroBits);
                     int numBits = input.nextInt();
